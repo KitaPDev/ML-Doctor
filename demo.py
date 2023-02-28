@@ -25,7 +25,7 @@ def train_model(PATH, device, train_set, test_set, model, use_DP, noise, norm, d
     acc_train = 0
     acc_test = 0
 
-    for i in range(100):
+    for i in range(1):
         print("<======================= Epoch " + str(i+1) + " =======================>")
         print("target training")
 
@@ -144,7 +144,7 @@ def test_modsteal(PATH, device, train_set, test_set, target_model, attack_model)
     attacking = train_steal_model(
         train_loader, test_loader, target_model, attack_model, PATH + "_target.pth", PATH + "_modsteal.pth", device, 64, loss, optimizer)
 
-    for i in range(100):
+    for i in range(1):
         print("[Epoch %d/%d] attack training"%((i+1), 100))
         attacking.train_with_same_distribution()
     
@@ -179,13 +179,13 @@ def main():
     args = parser.parse_args()
 
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
-    device = torch.device("cuda:0")
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     dataset_name = args.dataset_name
     attr = args.attributes
     if "_" in attr:
         attr = attr.split("_")
-    root = "../data"
+    root = "./data"
     use_DP = args.use_DP
     noise = args.noise
     norm = args.norm

@@ -625,7 +625,7 @@ def train_shadow_model(PATH, device, shadow_model, train_loader, test_loader, us
     acc_train = 0
     acc_test = 0
 
-    for i in range(100):
+    for i in range(1):
         print("<======================= Epoch " + str(i+1) + " =======================>")
         print("shadow training")
 

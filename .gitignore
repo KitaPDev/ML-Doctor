@@ -4,3 +4,5 @@ demoloader/trained_model
 demoloader/log
 doctor/__pycache_
 utils/__pycache_
+venv
+data
